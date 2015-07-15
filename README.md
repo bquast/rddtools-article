@@ -1,2 +1,7 @@
-# rddtools-paper
-paper on the rddtools package
+Introduction
+============
+
+The `rddtools` package...
+
+References
+==========
