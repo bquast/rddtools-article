@@ -46,7 +46,7 @@ We can now load the included data set.
     data("indh")
 
 Now that we have loading the data we can briefly inspect the structure
-of the data
+of the data.
 
     str(indh)
 
@@ -54,8 +54,6 @@ of the data
     ##  $ choice_pg: int  0 1 1 1 1 1 0 1 0 0 ...
     ##  $ commune  : num  30.1 30.1 30.1 30.1 30.1 ...
     ##  $ poverty  : num  30.1 30.1 30.1 30.1 30.1 ...
-    ##  - attr(*, "na.action")=Class 'omit'  Named int [1:11] 58 289 290 291 292 293 294 295 296 297 ...
-    ##   .. ..- attr(*, "names")= chr [1:11] "58" "289" "290" "291" ...
 
 The `indh` object is a `data.frame` containing 729 observations
 (representing individuals) of three variables:
