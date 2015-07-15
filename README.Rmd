@@ -1,0 +1,28 @@
+---
+author:
+  - name: Bastiaan Quast
+    affiliation: The Graduate Institute, Geneva
+    address: >
+      Maison de la paix
+      Geneva, Switzerland
+    email: bquast@gmail.com
+    url: http://qua.st/
+  title: 
+  formatted: "\\pkg{rddtools}: tools for Regression Discontinuity Design in R\\thanks{This research was financed by the Swiss National Science Foundation (SNSF) under the grant 'Development Aid and Social Dynamics' (100018-140745) administered by the Graduate Institute's Centre on Conflict, Development and Peacebuilding (CCDP) and led by Jean-Louis Arcand. We thank Sandra Reimann and Oliver Jutersonke at the CCDP for their generous support.}"
+  plain:     "rddtools: tools for Regression Discontinuity Design in R"
+  short:     "\\pkg{rddtools}"
+abstract: >
+  The rddtools package implements functions for handling Regression Discontinuity Design in R.
+  formatted: [RDD, Regression, Discontinuity, Design "\\proglang{R}"]
+plain:     [RDD, Regression, Discontinuity, Design R]
+preamble: >
+  \usepackage{amsmath}
+output:
+  md_document
+---
+
+# Introduction
+
+The `rddtools` package..
+
+# References
