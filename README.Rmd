@@ -56,7 +56,7 @@ We can now load the included data set.
 data("indh")
 ```
 
-Now that we have loading the data we can briefly inspect the structure of the data
+Now that we have loading the data we can briefly inspect the structure of the data.
 
 ```{r}
 str(indh)
