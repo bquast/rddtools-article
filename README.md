@@ -18,41 +18,43 @@ It implements several variants of RDD previously not implemented.
 
 -   Simple visualisation of the data using binned-plot: `plot()`
 -   Bandwidth selection:
--   MSE-RDD bandwidth procedure of (G. Imbens and Kalyanaraman 2012):
-    `rdd_bw_ik()`
--   MSE global bandwidth procedure of (Ruppert, Sheather, and Wand
-    1995): `rdd_bw_rsw()`
+    -   MSE-RDD bandwidth procedure of (G. Imbens and Kalyanaraman
+        2012): `rdd_bw_ik()`
+    -   MSE global bandwidth procedure of (Ruppert, Sheather, and Wand
+        1995): `rdd_bw_rsw()`
 -   Estimation:
--   RDD parametric estimation: `rdd_reg_lm()` This includes specifying
-    the polynomial order, including covariates with various
-    specifications as advocated in (G. W. Imbens and Lemieux 2008).
--   RDD local non-parametric estimation: `rdd_reg_np()`. Can also
-    include covariates, and allows different types of inference (fully
-    non-parametric, or parametric approximation).
--   RDD generalised estimation: allows to use custom estimating
-    functions to get the RDD coefficient. Could allow for example a
-    probit RDD, or quantile regression.
+    -   RDD parametric estimation: `rdd_reg_lm()` This includes
+        specifying the polynomial order, including covariates with
+        various specifications as advocated in (G. W. Imbens and Lemieux
+        2008).
+    -   RDD local non-parametric estimation: `rdd_reg_np()`. Can also
+        include covariates, and allows different types of inference
+        (fully non-parametric, or parametric approximation).
+    -   RDD generalised estimation: allows to use custom estimating
+        functions to get the RDD coefficient. Could allow for example a
+        probit RDD, or quantile regression.
 -   Post-Estimation tools:
--   Various tools, to obtain predictions at given covariate values (
-    `rdd_pred()` ), or to convert to other classes, to lm ( `as.lm()` ),
-    or to the package `np` ( `as.npreg()` ).
--   Function to do inference with clustered data: `clusterInf()` either
-    using a cluster covariance matrix ( **vcovCluster()** ) or by a
-    degrees of freedom correction (as in (Cameron, Gelbach, and Miller
-    2008)).
+    -   Various tools, to obtain predictions at given covariate values (
+        `rdd_pred()` ), or to convert to other classes, to lm (
+        `as.lm()` ), or to the package `np` ( `as.npreg()` ).
+    -   Function to do inference with clustered data: `clusterInf()`
+        either using a cluster covariance matrix ( **vcovCluster()** )
+        or by a degrees of freedom correction (as in (Cameron, Gelbach,
+        and Miller 2008)).
 -   Regression sensitivity analysis:
--   Plot the sensitivity of the coefficient with respect to the
-    bandwith: `plotSensi()`
--   **Placebo plot** using different cutpoints: `plotPlacebo()`
+    -   Plot the sensitivity of the coefficient with respect to the
+        bandwith: `plotSensi()`
+    -   **Placebo plot** using different cutpoints: `plotPlacebo()`
 -   Design sensitivity analysis:
--   McCrary test of manipulation of the forcing variable: wrapper
-    `dens_test()` to the function `DCdensity()` from package `rdd`.
--   Test of equal means of covariates: `covarTest_mean()`
--   Test of equal density of covariates: `covarTest_dens()`
+    -   McCrary test of manipulation of the forcing variable: wrapper
+        `dens_test()` to the function `DCdensity()` from package `rdd`.
+    -   Test of equal means of covariates: `covarTest_mean()`
+    -   Test of equal density of covariates: `covarTest_dens()`
 -   Datasets
--   Contains the seminal dataset of Lee (2008): `house`
--   Contains functions to replicate the Monte-Carlo simulations of
-    [Imbens and Kalyanaraman 2012]: `gen_mc_ik()`
+    -   Contains the data set of Arcand (2015): `indh`
+    -   Contains the seminal dataset of Lee (2008): `house`
+    -   Contains functions to replicate the Monte-Carlo simulations of
+        [Imbens and Kalyanaraman 2012]: `gen_mc_ik()`
 
 Application
 ===========
@@ -185,6 +187,9 @@ Sensitity tests.
 
 References
 ==========
+
+Arcand, Rieger, and Nguyen. 2015. “Development Aid and Social Dyanmics
+Data Set.”
 
 Cameron, A Colin, Jonah B Gelbach, and Douglas L Miller. 2008.
 “Bootstrap-Based Improvements for Inference with Clustered Errors.” *The
