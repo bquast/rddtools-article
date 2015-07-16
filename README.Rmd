@@ -54,7 +54,7 @@ It implements several variants of RDD previously not implemented.
     -  RDD generalised estimation: allows to use custom estimating functions to get the RDD coefficient. Could allow for example a probit RDD, or quantile regression.
 - Post-Estimation tools:
     - Various tools, to obtain predictions at given covariate values ( `rdd_pred()` ), or to convert to other classes, to lm ( `as.lm()` ), or to the package `np` ( `as.npreg()` ). 
-    - Function to do inference with clustered data: `clusterInf()` either using a cluster covariance matrix ( **vcovCluster()** ) or by a degrees of freedom correction (as in [@cameron2008bootstrap]).
+    - Function to do inference with clustered data: `clusterInf()` either using a cluster covariance matrix ( ``vcovCluster()`` ) or by a degrees of freedom correction (as in [@cameron2008bootstrap]).
 - Regression sensitivity analysis:
     - Plot the sensitivity of the coefficient with respect to the bandwith: `plotSensi()`
     - **Placebo plot** using different cutpoints: `plotPlacebo()`

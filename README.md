@@ -38,9 +38,9 @@ It implements several variants of RDD previously not implemented.
         `rdd_pred()` ), or to convert to other classes, to lm (
         `as.lm()` ), or to the package `np` ( `as.npreg()` ).
     -   Function to do inference with clustered data: `clusterInf()`
-        either using a cluster covariance matrix ( **vcovCluster()** )
-        or by a degrees of freedom correction (as in (Cameron, Gelbach,
-        and Miller 2008)).
+        either using a cluster covariance matrix ( `vcovCluster()` ) or
+        by a degrees of freedom correction (as in (Cameron, Gelbach, and
+        Miller 2008)).
 -   Regression sensitivity analysis:
     -   Plot the sensitivity of the coefficient with respect to the
         bandwith: `plotSensi()`
