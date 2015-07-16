@@ -48,12 +48,15 @@ We can now load the included data set.
 Now that we have loading the data we can briefly inspect the structure
 of the data.
 
-    str(indh)
+    summary(indh)
 
-    ## 'data.frame':    729 obs. of  3 variables:
-    ##  $ choice_pg: int  0 1 1 1 1 1 0 1 0 0 ...
-    ##  $ commune  : num  30.1 30.1 30.1 30.1 30.1 ...
-    ##  $ poverty  : num  30.1 30.1 30.1 30.1 30.1 ...
+    ##    choice_pg         commune         poverty     
+    ##  Min.   :0.0000   Min.   :28.09   Min.   :28.09  
+    ##  1st Qu.:0.0000   1st Qu.:29.01   1st Qu.:29.01  
+    ##  Median :1.0000   Median :29.95   Median :29.95  
+    ##  Mean   :0.6722   Mean   :29.73   Mean   :29.73  
+    ##  3rd Qu.:1.0000   3rd Qu.:30.34   3rd Qu.:30.34  
+    ##  Max.   :1.0000   Max.   :30.97   Max.   :30.97
 
 The `indh` object is a `data.frame` containing 729 observations
 (representing individuals) of three variables:

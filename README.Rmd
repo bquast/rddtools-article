@@ -1,5 +1,10 @@
 ---
 author:
+  - name: Matthieu Stigler
+    affiliation: UC Davis
+    email: matthieustigler@gmail.com
+    address: California
+    url: https://matthieustigler.github.io/
   - name: Bastiaan Quast
     affiliation: The Graduate Institute, Geneva
     address: >
@@ -7,12 +12,6 @@ author:
       Geneva, Switzerland
     email: bquast@gmail.com
     url: http://qua.st/
-    
-  - name: Matthieu Stigler
-    affiliation: UC Davis
-    email: matthieustigler@gmail.com
-    address: California
-    url: https://matthieustigler.github.io/
 title:
   formatted: "\\pkg{rddtools}: tools for Regression Discontinuity Design in R"
   plain:     "rddtools: tools for Regression Discontinuity Design in R"
@@ -59,7 +58,7 @@ data("indh")
 Now that we have loading the data we can briefly inspect the structure of the data.
 
 ```{r}
-str(indh)
+summary(indh)
 ```
 
 The `indh` object is a `data.frame` containing 729 observations (representing individuals) of three variables:
