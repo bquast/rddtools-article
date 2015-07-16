@@ -2,7 +2,7 @@
 author:
   - name: Matthieu Stigler
     affiliation: UC Davis
-    email: matthieustigler@gmail.com
+    email: matthieu.stigler@gmail.com
     address: California
     url: https://matthieustigler.github.io/
   - name: Bastiaan Quast
@@ -31,25 +31,33 @@ output:
 
 # Introduction
 
-The `rddtools` package...
+The `rddtools` package address 
 
 
 # Design
 
-The package includes the following functions.
+A unified framework is implemented through the `rdd_data` class which inherits from the `R` `base` `data.frame` class.
+This functionality is made accessible throug hthe associated `rdd_data()` functions and methods.
+
+The package is designed to leveredge of existing implementations of **Regression Discontinuity Design** in `R`, such as the `rdd` package.
+
+It implements several variants of RDD previously not implemented.
+Such as
+
+- `dens_test`: McCracy test for manipulation of the forcing variable
+- `rdd_bw_ik`: Imbens-Kalyanaraman Optimal Bandwidth Calculation
+- `rdd_gen_reg`: General polynomial estimator of the regression discontinuity
+- `gen_mc_ik`: Monte Carlo simulations of Imbens and Kalyanaraman
+
 
 # Application
 
 we use the data from the Initiative Nationale du Development Humaine (INDH) a development project in Morocco.
 The data is included with the `rddtools` package under the name `indh`.
 
-We start by loading the package.
-
-```{r}
+```{r, echo=FALSE, message=FALSE}
 library(rddtools)
 ```
-
-We can now load the included data set.
 
 ```{r}
 data("indh")
@@ -130,8 +138,6 @@ Sensitity tests.
 ```{r}
 plotSensi(reg_nonpara, from=0.05, to=1, by=0.1)
 ```
-
-
 
 
 # References

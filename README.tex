@@ -29,7 +29,7 @@ Discontinuity Design in R.
     Matthieu Stigler\\
   UC Davis\\
   California\\
-  E-mail: \href{mailto:matthieustigler@gmail.com}{\nolinkurl{matthieustigler@gmail.com}}\\
+  E-mail: \href{mailto:matthieu.stigler@gmail.com}{\nolinkurl{matthieu.stigler@gmail.com}}\\
   URL: \url{https://matthieustigler.github.io/}
       Bastiaan Quast\\
   The Graduate Institute, Geneva\\
@@ -44,52 +44,43 @@ Discontinuity Design in R.
 
 \section{Introduction}\label{introduction}
 
-The \texttt{rddtools} package\ldots{}
+The \texttt{rddtools} package address
 
 \section{Design}\label{design}
 
-The package includes the following functions.
+A unified framework is implemented through the \texttt{rdd\_data} class
+which inherits from the \texttt{R} \texttt{base} \texttt{data.frame}
+class. This functionality is made accessible throug hthe associated
+\texttt{rdd\_data()} functions and methods.
+
+The package is designed to leveredge of existing implementations of
+\textbf{Regression Discontinuity Design} in \texttt{R}, such as the
+\texttt{rdd} package.
+
+It implements several variants of RDD previously not implemented. Such
+as
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{dens\_test}: McCracy test for manipulation of the forcing
+  variable
+\item
+  \texttt{rdd\_bw\_ik}: Imbens-Kalyanaraman Optimal Bandwidth
+  Calculation
+\item
+  \texttt{rdd\_gen\_reg}: General polynomial estimator of the regression
+  discontinuity
+\item
+  \texttt{gen\_mc\_ik}: Monte Carlo simulations of Imbens and
+  Kalyanaraman
+\end{itemize}
 
 \section{Application}\label{application}
 
 we use the data from the Initiative Nationale du Development Humaine
 (INDH) a development project in Morocco. The data is included with the
 \texttt{rddtools} package under the name \texttt{indh}.
-
-We start by loading the package.
-
-\begin{CodeChunk}
-\begin{CodeInput}
-library(rddtools)
-\end{CodeInput}
-\begin{CodeOutput}
-Loading required package: AER
-Loading required package: car
-Loading required package: lmtest
-Loading required package: zoo
-
-Attaching package: 'zoo'
-
-The following objects are masked from 'package:base':
-
-    as.Date, as.Date.numeric
-
-Loading required package: sandwich
-Loading required package: survival
-\end{CodeOutput}
-\begin{CodeOutput}
-Warning: package 'survival' was built under R version 3.2.1
-\end{CodeOutput}
-\begin{CodeOutput}
-Loading required package: np
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.60-2)
-[vignette("np_faq",package="np") provides answers to frequently asked questions]
-IMPORTANT, this is an ALPHA VERSION
-                        many changes to the API will follow
-\end{CodeOutput}
-\end{CodeChunk}
-
-We can now load the included data set.
 
 \begin{CodeChunk}
 \begin{CodeInput}

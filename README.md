@@ -1,12 +1,27 @@
 Introduction
 ============
 
-The `rddtools` package...
+The `rddtools` package address
 
 Design
 ======
 
-The package includes the following functions.
+A unified framework is implemented through the `rdd_data` class which
+inherits from the `R` `base` `data.frame` class. This functionality is
+made accessible throug hthe associated `rdd_data()` functions and
+methods.
+
+The package is designed to leveredge of existing implementations of
+**Regression Discontinuity Design** in `R`, such as the `rdd` package.
+
+It implements several variants of RDD previously not implemented. Such
+as
+
+-   `dens_test`: McCracy test for manipulation of the forcing variable
+-   `rdd_bw_ik`: Imbens-Kalyanaraman Optimal Bandwidth Calculation
+-   `rdd_gen_reg`: General polynomial estimator of the regression
+    discontinuity
+-   `gen_mc_ik`: Monte Carlo simulations of Imbens and Kalyanaraman
 
 Application
 ===========
@@ -14,34 +29,6 @@ Application
 we use the data from the Initiative Nationale du Development Humaine
 (INDH) a development project in Morocco. The data is included with the
 `rddtools` package under the name `indh`.
-
-We start by loading the package.
-
-    library(rddtools)
-
-    ## Loading required package: AER
-    ## Loading required package: car
-    ## Loading required package: lmtest
-    ## Loading required package: zoo
-    ## 
-    ## Attaching package: 'zoo'
-    ## 
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     as.Date, as.Date.numeric
-    ## 
-    ## Loading required package: sandwich
-    ## Loading required package: survival
-
-    ## Warning: package 'survival' was built under R version 3.2.1
-
-    ## Loading required package: np
-    ## Nonparametric Kernel Methods for Mixed Datatypes (version 0.60-2)
-    ## [vignette("np_faq",package="np") provides answers to frequently asked questions]
-    ## IMPORTANT, this is an ALPHA VERSION
-    ##                         many changes to the API will follow
-
-We can now load the included data set.
 
     data("indh")
 
