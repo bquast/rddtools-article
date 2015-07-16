@@ -27,6 +27,7 @@ output:
   md_document
   
   rticles::jss_article
+bibliography: bibliography.bib
 ---
 
 # Introduction
@@ -42,12 +43,28 @@ This functionality is made accessible throug hthe associated `rdd_data()` functi
 The package is designed to leveredge of existing implementations of **Regression Discontinuity Design** in `R`, such as the `rdd` package.
 
 It implements several variants of RDD previously not implemented.
-Such as
 
-- `dens_test`: McCracy test for manipulation of the forcing variable
-- `rdd_bw_ik`: Imbens-Kalyanaraman Optimal Bandwidth Calculation
-- `rdd_gen_reg`: General polynomial estimator of the regression discontinuity
-- `gen_mc_ik`: Monte Carlo simulations of Imbens and Kalyanaraman
+-  Simple visualisation of the data using binned-plot: `plot()`
+- Bandwidth selection:
+  - MSE-RDD bandwidth procedure of [@imbens2012optimal]: `rdd_bw_ik()`
+  - MSE global bandwidth procedure of [@ruppert1995effective]: `rdd_bw_rsw()`
+- Estimation:
+  -  RDD parametric estimation: `rdd_reg_lm()` This includes specifying the polynomial order, including covariates with various specifications as advocated in [@imbens2008regression].
+  -  RDD local non-parametric estimation: `rdd_reg_np()`. Can also include covariates, and allows different types of inference (fully non-parametric, or parametric approximation). 
+  -  RDD generalised estimation: allows to use custom estimating functions to get the RDD coefficient. Could allow for example a probit RDD, or quantile regression.
+- Post-Estimation tools:
+  - Various tools, to obtain predictions at given covariate values ( `rdd_pred()` ), or to convert to other classes, to lm ( `as.lm()` ), or to the package `np` ( `as.npreg()` ). 
+  - Function to do inference with clustered data: `clusterInf()` either using a cluster covariance matrix ( **vcovCluster()** ) or by a degrees of freedom correction (as in [@cameron2008bootstrap]).
+- Regression sensitivity analysis:
+  - Plot the sensitivity of the coefficient with respect to the bandwith: `plotSensi()`
+  - **Placebo plot** using different cutpoints: `plotPlacebo()`
+- Design sensitivity analysis:
+  - McCrary test of manipulation of the forcing variable: wrapper `dens_test()` to the function `DCdensity()` from package `rdd`. 
+  - Test of equal means of covariates: `covarTest_mean()`
+  - Test of equal density of covariates: `covarTest_dens()`
+- Datasets
+  - Contains the seminal dataset of Lee [-@lee2008randomized]: `house`
+  - Contains functions to replicate the Monte-Carlo simulations of [Imbens and Kalyanaraman 2012]: `gen_mc_ik()`
 
 
 # Application

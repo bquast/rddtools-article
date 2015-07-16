@@ -57,23 +57,71 @@ The package is designed to leveredge of existing implementations of
 \textbf{Regression Discontinuity Design} in \texttt{R}, such as the
 \texttt{rdd} package.
 
-It implements several variants of RDD previously not implemented. Such
-as
+It implements several variants of RDD previously not implemented.
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  \texttt{dens\_test}: McCracy test for manipulation of the forcing
-  variable
+  Simple visualisation of the data using binned-plot: \texttt{plot()}
 \item
-  \texttt{rdd\_bw\_ik}: Imbens-Kalyanaraman Optimal Bandwidth
-  Calculation
+  Bandwidth selection:
 \item
-  \texttt{rdd\_gen\_reg}: General polynomial estimator of the regression
-  discontinuity
+  MSE-RDD bandwidth procedure of (G. Imbens and Kalyanaraman 2012):
+  \texttt{rdd\_bw\_ik()}
 \item
-  \texttt{gen\_mc\_ik}: Monte Carlo simulations of Imbens and
-  Kalyanaraman
+  MSE global bandwidth procedure of (Ruppert, Sheather, and Wand 1995):
+  \texttt{rdd\_bw\_rsw()}
+\item
+  Estimation:
+\item
+  RDD parametric estimation: \texttt{rdd\_reg\_lm()} This includes
+  specifying the polynomial order, including covariates with various
+  specifications as advocated in (G. W. Imbens and Lemieux 2008).
+\item
+  RDD local non-parametric estimation: \texttt{rdd\_reg\_np()}. Can also
+  include covariates, and allows different types of inference (fully
+  non-parametric, or parametric approximation).
+\item
+  RDD generalised estimation: allows to use custom estimating functions
+  to get the RDD coefficient. Could allow for example a probit RDD, or
+  quantile regression.
+\item
+  Post-Estimation tools:
+\item
+  Various tools, to obtain predictions at given covariate values (
+  \texttt{rdd\_pred()} ), or to convert to other classes, to lm (
+  \texttt{as.lm()} ), or to the package \texttt{np} (
+  \texttt{as.npreg()} ).
+\item
+  Function to do inference with clustered data: \texttt{clusterInf()}
+  either using a cluster covariance matrix ( \textbf{vcovCluster()} ) or
+  by a degrees of freedom correction (as in (Cameron, Gelbach, and
+  Miller 2008)).
+\item
+  Regression sensitivity analysis:
+\item
+  Plot the sensitivity of the coefficient with respect to the bandwith:
+  \texttt{plotSensi()}
+\item
+  \textbf{Placebo plot} using different cutpoints:
+  \texttt{plotPlacebo()}
+\item
+  Design sensitivity analysis:
+\item
+  McCrary test of manipulation of the forcing variable: wrapper
+  \texttt{dens\_test()} to the function \texttt{DCdensity()} from
+  package \texttt{rdd}.
+\item
+  Test of equal means of covariates: \texttt{covarTest\_mean()}
+\item
+  Test of equal density of covariates: \texttt{covarTest\_dens()}
+\item
+  Datasets
+\item
+  Contains the seminal dataset of Lee (2008): \texttt{house}
+\item
+  Contains functions to replicate the Monte-Carlo simulations of
+  {[}Imbens and Kalyanaraman 2012{]}: \texttt{gen\_mc\_ik()}
 \end{itemize}
 
 \section{Application}\label{application}
@@ -268,7 +316,29 @@ plotSensi(reg_nonpara, from=0.05, to=1, by=0.1)
 
 \end{CodeChunk}
 
-\section{References}\label{references}
+\section*{References}\label{references}
+\addcontentsline{toc}{section}{References}
+
+Cameron, A Colin, Jonah B Gelbach, and Douglas L Miller. 2008.
+``Bootstrap-Based Improvements for Inference with Clustered Errors.''
+\emph{The Review of Economics and Statistics} 90 (3). MIT Press:
+414--27.
+
+Imbens, Guido W, and Thomas Lemieux. 2008. ``Regression Discontinuity
+Designs: A Guide to Practice.'' \emph{Journal of Econometrics} 142 (2).
+Elsevier: 615--35.
+
+Imbens, Guido, and Karthik Kalyanaraman. 2012. ``Optimal Bandwidth
+Choice for the Regression.''
+
+Lee, David S. 2008. ``Randomized Experiments from Non-Random Selection
+in US House Elections.'' \emph{Journal of Econometrics} 142 (2).
+Elsevier: 675--97.
+
+Ruppert, David, Simon J Sheather, and Matthew P Wand. 1995. ``An
+Effective Bandwidth Selector for Local Least Squares Regression.''
+\emph{Journal of the American Statistical Association} 90 (432). Taylor
+\& Francis: 1257--70.
 
 \end{document}
 
