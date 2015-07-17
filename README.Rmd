@@ -21,6 +21,7 @@ abstract: >
 keywords:
   formatted: [RDD, Regression, Discontinuity, Design, "\\proglang{R}"]
   plain:     [RDD, Regression, Discontinuity, Design R]
+submitdate: 2015-07-25  
 preamble: >
   \usepackage{amsmath}
 output:
@@ -101,10 +102,9 @@ Now that we have loading the data we can briefly inspect the structure of the da
 str(indh)
 ```
 
-The `indh` object is a `data.frame` containing 720 observations (representing individuals) of three variables:
+The `indh` object is a `data.frame` containing 720 observations (representing individuals) of two variables:
 
-- `choice_pg` 
-- `commune`
+- `choice_pg`
 - `poverty`
 
 The variable of interest is `choice_pg`, which represent the decision to contibute to a public good or not.
@@ -129,7 +129,7 @@ str(rdd_dat_indh)
 ```
 
 
-# Application
+# Analysis
 
 In order to best understand our data, we start with an exploratory data analysis using tables...
 
