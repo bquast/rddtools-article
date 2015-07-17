@@ -84,10 +84,10 @@ data("indh")
 Now that we have loading the data we can briefly inspect the structure of the data.
 
 ```{r}
-summary(indh)
+str(indh)
 ```
 
-The `indh` object is a `data.frame` containing 729 observations (representing individuals) of three variables:
+The `indh` object is a `data.frame` containing 720 observations (representing individuals) of three variables:
 
 - `choice_pg` 
 - `commune`

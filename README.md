@@ -68,17 +68,15 @@ we use the data from the Initiative Nationale du Development Humaine
 Now that we have loading the data we can briefly inspect the structure
 of the data.
 
-    summary(indh)
+    str(indh)
 
-    ##    choice_pg         commune         poverty     
-    ##  Min.   :0.0000   Min.   :28.09   Min.   :28.09  
-    ##  1st Qu.:0.0000   1st Qu.:29.01   1st Qu.:29.01  
-    ##  Median :1.0000   Median :29.95   Median :29.95  
-    ##  Mean   :0.6722   Mean   :29.73   Mean   :29.73  
-    ##  3rd Qu.:1.0000   3rd Qu.:30.34   3rd Qu.:30.34  
-    ##  Max.   :1.0000   Max.   :30.97   Max.   :30.97
+    ## 'data.frame':    720 obs. of  2 variables:
+    ##  $ choice_pg: int  0 1 1 1 1 1 0 1 0 0 ...
+    ##  $ poverty  : num  30.1 30.1 30.1 30.1 30.1 ...
+    ##  - attr(*, "na.action")=Class 'omit'  Named int [1:11] 58 289 290 291 292 293 294 295 296 297 ...
+    ##   .. ..- attr(*, "names")= chr [1:11] "58" "289" "290" "291" ...
 
-The `indh` object is a `data.frame` containing 729 observations
+The `indh` object is a `data.frame` containing 720 observations
 (representing individuals) of three variables:
 
 -   `choice_pg`
@@ -109,7 +107,7 @@ The structure is similar but contains some additional information.
 
     str(rdd_dat_indh)
 
-    ## Classes 'rdd_data' and 'data.frame': 729 obs. of  2 variables:
+    ## Classes 'rdd_data' and 'data.frame': 720 obs. of  2 variables:
     ##  $ x: num  30.1 30.1 30.1 30.1 30.1 ...
     ##  $ y: int  0 1 1 1 1 1 0 1 0 0 ...
     ##  - attr(*, "hasCovar")= logi FALSE
@@ -126,8 +124,8 @@ analysis using tables...
     ## 
     ## Cutpoint: 30 
     ## Sample size: 
-    ##  -Full : 729 
-    ##  -Left : 371 
+    ##  -Full : 720 
+    ##  -Left : 362 
     ##  -Right: 358
     ## Covariates: no
 
@@ -145,11 +143,11 @@ We can now continue with a standard Regression Discontinuity Design
     ## ### RDD regression: parametric ###
     ##  Polynomial order:  4 
     ##  Slopes:  separate 
-    ##  Number of obs: 729 (left: 371, right: 358)
+    ##  Number of obs: 720 (left: 362, right: 358)
     ## 
     ##  Coefficient:
     ##   Estimate Std. Error t value Pr(>|t|)
-    ## D  0.26428    0.16590   1.593   0.1116
+    ## D  0.22547    0.17696  1.2741    0.203
 
 and visualising this estimation.
 
@@ -164,14 +162,12 @@ non-parametric estimation.
     (reg_nonpara <- rdd_reg_np(rdd_object=rdd_dat_indh, bw=bw_ik))
 
     ## ### RDD regression: nonparametric local linear###
-    ##  Bandwidth:  0.7812904 
-    ##  Number of obs: 467 (left: 146, right: 321)
+    ##  Bandwidth:  0.790526 
+    ##  Number of obs: 460 (left: 139, right: 321)
     ## 
     ##  Coefficient:
-    ##   Estimate Std. Error z value Pr(>|z|)  
-    ## D 0.178174   0.095319  1.8692  0.06159 .
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ##   Estimate Std. Error z value Pr(>|z|)
+    ## D 0.144775   0.095606  1.5143     0.13
 
 and visualising the non-parametric estimation.
 
