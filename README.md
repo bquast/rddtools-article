@@ -96,9 +96,9 @@ A collection of typical data sets is included in the package.
 -   Voting in the U.S. House of Representatives (Lee 2008): `house`
 -   STAR dataset (Angrist and Pischke 2008): `STAR_MHE`
 
-Both data sets is made available as a `data.frame`. Using the previously
-discuss `rdd_data()` function we can transform a `data.frame` to an
-object of class `rdd_data`, which inherits from `data.frame`.
+All three data sets are made available as a `data.frame`. Using the
+previously discuss `rdd_data()` function we can transform a `data.frame`
+to an object of class `rdd_data`, which inherits from `data.frame`.
 
 Here we can the data from the Initiative Nationale pour le Développement
 Humain (INDH), a development project in Morocco. The data is included
@@ -122,19 +122,19 @@ The `indh` object is a `data.frame` containing 720 observations
 -   `poverty`
 
 The variable of interest is `choice_pg`, which represent the decision to
-contibute to a public good or not. The observations are individuals
+contribute to a public good or not. The observations are individuals
 choosing to contribute or not, these individuals are clustered by the
-variable `commune` which is the municiple structure at which funding was
+variable `commune` which is the municipal structure at which funding was
 distributed as part of the INDH project. The forcing variable is
 `poverty` which represents the number of households in a commune living
 below the poverty threshold. As part of the INDH, commune with a
-proportion of household below the poverty threshhold greater than 30%
+proportion of household below the poverty threshold greater than 30%
 were allowed to distribute the funding using a **Community Driven
 Development** scheme. The cutoff point for our analysis is therefore
 `30`.
 
 We can now transform the `data.frame` to a special `rdd_data`-class
-object, inhereting from the `data.frame` class using the `rdd_data()`
+object, inheriting from the `data.frame` class using the `rdd_data()`
 function.
 
     rdd_dat_indh <- rdd_data(y=choice_pg,
@@ -235,7 +235,7 @@ and visualising the non-parametric estimation.
 
 ![](README_files/figure-markdown_strict/plot-reg_nonpara-1.png)
 
-Sensitity tests.
+Sensitivity tests.
 
     plotSensi(reg_nonpara, from=0.05, to=1, by=0.1)
 
@@ -246,9 +246,9 @@ Conclusion and Discussion
 
 The package `rddtools` provides a unified framework for working with
 Regression Discontinuity Data in `R`. Functionality already available is
-several existing packages, such as `rdd` and `KernSmooth` can now
-easilty be utlised using the `rdd_data` framework, as well as several
-linking functions.
+several existing packages, such as `rdd` and `KernSmooth` can now easily
+be utilised using the `rdd_data` framework, as well as several linking
+functions.
 
 In addition to this, new tools and algorithms are also implement, as
 well as various post-estimation robustness checks.
