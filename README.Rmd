@@ -104,7 +104,7 @@ Using the previously discuss `rdd_data()` function we can transform a `data.fram
 Here we can the data from the Initiative Nationale du Development Humaine (INDH), a development project in Morocco.
 The data is included with the package under the name `indh`.
 
-```{r, echo=FALSE, message=FALSE}
+```{r setup, echo=FALSE, message=FALSE}
 library(rddtools)
 data("indh")
 ls()
@@ -112,7 +112,7 @@ ls()
 
 Now that we have loading the data we can briefly inspect the structure of the data.
 
-```{r}
+```{r df-str}
 str(indh)
 ```
 
@@ -129,7 +129,7 @@ The cutoff point for our analysis is therefore `30`.
 
 We can now transform the `data.frame` to a special `rdd_data`-class object, inhereting from the `data.frame` class using the `rdd_data()` function.
 
-```{r}
+```{r rdd_data}
 rdd_dat_indh <- rdd_data(y=choice_pg,
                          x=poverty,
                          data=indh,
@@ -137,63 +137,64 @@ rdd_dat_indh <- rdd_data(y=choice_pg,
 ```
 
 The `rdd_data()` can be used using the `data` argument, in which case the function will look for the values o `y` and `x` in this argument (before looking in the `.GlobalEnv`), if this argument is `NULL`, only the `.GlobalEnv` will be scanned.
+Additional exogenous variables can be included using the `covar` argument.
 
 The structure is similar to the original `data.frame` object, but contains some additional information.
 
-```{r}
+```{r rdd_data-str}
 str(rdd_dat_indh)
 ```
 
-Thee `rdd_data` object has the classes `data.frame` and `rdd_data`.
+The `rdd_data` object has the classes `data.frame` and `rdd_data`.
 It contains two variables, `y` the explanandum or dependent variable and `x` the explanans or driving variable, which is also our discontinuous variable.
 Related to the discontinuous variable is the `attribute` called `cutpoint`, which describes where in the domain of `x` the discontinuity occurs.
-Additional exogenous variab
-
+The `hasCover` attribute indicates if additional exogenous variables have been included using the `cover` argument to the `rdd_data()` function.
 
 
 # Analysis
 
 In order to best understand our data, we start with an exploratory data analysis using tables...
 
-```{r}
+```{r summary}
 summary(rdd_dat_indh)
 ```
 
 ...and plots.
 
-```{r}
-plot(rdd_dat_indh[1:715,])
+```{r plot}
+plot(rdd_dat_indh)
 ```
 
 We can now continue with a standard Regression Discontinuity Design estimation.
 
-```{r}
+```{r reg_para}
 reg_para <- rdd_reg_lm(rdd_dat_indh, order=4)
 print(reg_para) # uses print.rdd_data
 ```
 
 and visualising this estimation.
 
-```{r}
+```{r plot-reg_para}
 plot(reg_para)
 ```
 
 In addition to the parametric estimation, we can also perform a non-parametric estimation.
 
-```{r}
+```{r reg_nonpara}
 bw_ik <- rdd_bw_ik(rdd_dat_indh)
-(reg_nonpara <- rdd_reg_np(rdd_object=rdd_dat_indh, bw=bw_ik))
+reg_nonpara <- rdd_reg_np(rdd_object=rdd_dat_indh, bw=bw_ik)
+reg_nonpara
 ```
 
 and visualising the non-parametric estimation.
 
-```{r}
+```{r plot-reg_nonpara}
 plot(reg_nonpara)
 ```
 
 Sensitity tests.
 
-```{r}
+```{r sensi}
 plotSensi(reg_nonpara, from=0.05, to=1, by=0.1)
 ```
 

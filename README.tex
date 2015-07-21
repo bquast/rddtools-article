@@ -216,7 +216,8 @@ The \texttt{rdd\_data()} can be used using the \texttt{data} argument,
 in which case the function will look for the values o \texttt{y} and
 \texttt{x} in this argument (before looking in the \texttt{.GlobalEnv}),
 if this argument is \texttt{NULL}, only the \texttt{.GlobalEnv} will be
-scanned.
+scanned. Additional exogenous variables can be included using the
+\texttt{covar} argument.
 
 The structure is similar to the original \texttt{data.frame} object, but
 contains some additional information.
@@ -236,13 +237,15 @@ Classes 'rdd_data' and 'data.frame':    720 obs. of  2 variables:
 \end{CodeOutput}
 \end{CodeChunk}
 
-Thee \texttt{rdd\_data} object has the classes \texttt{data.frame} and
+The \texttt{rdd\_data} object has the classes \texttt{data.frame} and
 \texttt{rdd\_data}. It contains two variables, \texttt{y} the
 explanandum or dependent variable and \texttt{x} the explanans or
 driving variable, which is also our discontinuous variable. Related to
 the discontinuous variable is the \texttt{attribute} called
 \texttt{cutpoint}, which describes where in the domain of \texttt{x} the
-discontinuity occurs. Additional exogenous variab
+discontinuity occurs. The \texttt{hasCover} attribute indicates if
+additional exogenous variables have been included using the
+\texttt{cover} argument to the \texttt{rdd\_data()} function.
 
 \section{Analysis}\label{analysis}
 
@@ -269,11 +272,11 @@ Covariates: no
 
 \begin{CodeChunk}
 \begin{CodeInput}
-plot(rdd_dat_indh[1:715,])
+plot(rdd_dat_indh)
 \end{CodeInput}
 
 
-\begin{center}\includegraphics{README_files/figure-latex/unnamed-chunk-6-1} \end{center}
+\begin{center}\includegraphics{README_files/figure-latex/plot-1} \end{center}
 
 \end{CodeChunk}
 
@@ -305,7 +308,7 @@ plot(reg_para)
 \end{CodeInput}
 
 
-\begin{center}\includegraphics{README_files/figure-latex/unnamed-chunk-8-1} \end{center}
+\begin{center}\includegraphics{README_files/figure-latex/plot-reg_para-1} \end{center}
 
 \end{CodeChunk}
 
@@ -315,7 +318,8 @@ non-parametric estimation.
 \begin{CodeChunk}
 \begin{CodeInput}
 bw_ik <- rdd_bw_ik(rdd_dat_indh)
-(reg_nonpara <- rdd_reg_np(rdd_object=rdd_dat_indh, bw=bw_ik))
+reg_nonpara <- rdd_reg_np(rdd_object=rdd_dat_indh, bw=bw_ik)
+reg_nonpara
 \end{CodeInput}
 \begin{CodeOutput}
 ### RDD regression: nonparametric local linear###
@@ -336,7 +340,7 @@ plot(reg_nonpara)
 \end{CodeInput}
 
 
-\begin{center}\includegraphics{README_files/figure-latex/unnamed-chunk-10-1} \end{center}
+\begin{center}\includegraphics{README_files/figure-latex/plot-reg_nonpara-1} \end{center}
 
 \end{CodeChunk}
 
@@ -348,7 +352,7 @@ plotSensi(reg_nonpara, from=0.05, to=1, by=0.1)
 \end{CodeInput}
 
 
-\begin{center}\includegraphics{README_files/figure-latex/unnamed-chunk-11-1} \end{center}
+\begin{center}\includegraphics{README_files/figure-latex/sensi-1} \end{center}
 
 \end{CodeChunk}
 

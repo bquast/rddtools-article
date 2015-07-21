@@ -139,7 +139,8 @@ function.
 The `rdd_data()` can be used using the `data` argument, in which case
 the function will look for the values o `y` and `x` in this argument
 (before looking in the `.GlobalEnv`), if this argument is `NULL`, only
-the `.GlobalEnv` will be scanned.
+the `.GlobalEnv` will be scanned. Additional exogenous variables can be
+included using the `covar` argument.
 
 The structure is similar to the original `data.frame` object, but
 contains some additional information.
@@ -154,12 +155,14 @@ contains some additional information.
     ##  - attr(*, "cutpoint")= num 30
     ##  - attr(*, "type")= chr "Sharp"
 
-Thee `rdd_data` object has the classes `data.frame` and `rdd_data`. It
+The `rdd_data` object has the classes `data.frame` and `rdd_data`. It
 contains two variables, `y` the explanandum or dependent variable and
 `x` the explanans or driving variable, which is also our discontinuous
 variable. Related to the discontinuous variable is the `attribute`
 called `cutpoint`, which describes where in the domain of `x` the
-discontinuity occurs. Additional exogenous variab
+discontinuity occurs. The `hasCover` attribute indicates if additional
+exogenous variables have been included using the `cover` argument to the
+`rdd_data()` function.
 
 Analysis
 ========
@@ -180,9 +183,9 @@ analysis using tables...
 
 ...and plots.
 
-    plot(rdd_dat_indh[1:715,])
+    plot(rdd_dat_indh)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-6-1.png)
+![](README_files/figure-markdown_strict/plot-1.png)
 
 We can now continue with a standard Regression Discontinuity Design
 estimation.
@@ -203,13 +206,14 @@ and visualising this estimation.
 
     plot(reg_para)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-8-1.png)
+![](README_files/figure-markdown_strict/plot-reg_para-1.png)
 
 In addition to the parametric estimation, we can also perform a
 non-parametric estimation.
 
     bw_ik <- rdd_bw_ik(rdd_dat_indh)
-    (reg_nonpara <- rdd_reg_np(rdd_object=rdd_dat_indh, bw=bw_ik))
+    reg_nonpara <- rdd_reg_np(rdd_object=rdd_dat_indh, bw=bw_ik)
+    reg_nonpara
 
     ## ### RDD regression: nonparametric local linear###
     ##  Bandwidth:  0.790526 
@@ -223,13 +227,13 @@ and visualising the non-parametric estimation.
 
     plot(reg_nonpara)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+![](README_files/figure-markdown_strict/plot-reg_nonpara-1.png)
 
 Sensitity tests.
 
     plotSensi(reg_nonpara, from=0.05, to=1, by=0.1)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-11-1.png)
+![](README_files/figure-markdown_strict/sensi-1.png)
 
 Conclusion and Discussion
 =========================
