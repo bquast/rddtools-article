@@ -27,7 +27,7 @@ preamble: >
 output:
   md_document
    
-  rticles::jss_article 
+
 bibliography: bibliography.bib
 ---
 
@@ -42,23 +42,26 @@ A unified framework for RDD is implemented through the `rdd_data` class which in
 This functionality is made accessible through the associated `rdd_data()` function,
 as well as the following associated methods.
 
+- `[.rdd_data()` / `subset.rdd_data()`
 - `summary.rdd_data()`
 - `plot.rdd_data()`
 
 The package is designed to leveredge of existing implementations of **Regression Discontinuity Design** in `R`, such as the `rdd` [@dimmery2013rdd] and `KernSmooth` [@wand2015kernsmooth] packages.
 Furthermore, general algorithms such as non-parametric regression from the `np` package [@hayfield2008np] is made accessible for RDD through the `rdd_data` framework.
+
 In addition to this, it implements several tools for RDD analysis that were previously unavailable.
 
-- Simple visualisation of the data using binned-plot: `plot()`
 
 ## Bandwidth Selection
 
-Two new mehtods for Bandwidth selection are included.
+Two new methods for Bandwidth selection are included.
 
  - MSE-RDD bandwidth procedure of [@imbens2012optimal]: `rdd_bw_ik()`
  - MSE global bandwidth procedure of [@ruppert1995effective]: `rdd_bw_rsw()`
     
-##Estimation
+    
+## Estimation
+
 RDD parametric estimation: `rdd_reg_lm()` This includes specifying the polynomial order, including covariates with various specifications as advocated in [@imbens2008regression].
 
 RDD local non-parametric estimation: `rdd_reg_np()`. Can also include covariates, and allows different types of inference (fully non-parametric, or parametric approximation). 
@@ -75,7 +78,6 @@ Various tools, to obtain predictions at given covariate values ( `rdd_pred()` ),
 Function to do inference with clustered data: `clusterInf()` either using a cluster covariance matrix ( ``vcovCluster()`` ) or by a degrees of freedom correction (as in [@cameron2008bootstrap]).
 
 Contains functions to replicate the Monte-Carlo simulations of [Imbens and Kalyanaraman 2012]: `gen_mc_ik()`
-
 
 
 ## Regression Sensitivity Analysis
@@ -103,7 +105,7 @@ A collection of typical data sets is included in the package.
 Both data sets is made available as a `data.frame`.
 Using the previously discuss `rdd_data()` function we can transform a `data.frame` to an object of class `rdd_data`, which inherits from `data.frame`.
 
-Here we can the data from the Initiative Nationale du Development Humaine (INDH), a development project in Morocco.
+Here we can the data from the Initiative Nationale pour le Développement Humain (INDH), a development project in Morocco.
 The data is included with the package under the name `indh`.
 
 ```{r setup, echo=FALSE, message=FALSE}
@@ -114,7 +116,7 @@ ls()
 
 Now that we have loading the data we can briefly inspect the structure of the data.
 
-```{r df-str}
+```{r df-str, out.width='\\textwidth'}
 str(indh)
 ```
 

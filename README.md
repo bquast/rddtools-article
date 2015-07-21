@@ -12,6 +12,7 @@ which inherits from the `R` `base` package's `data.frame` class. This
 functionality is made accessible through the associated `rdd_data()`
 function, as well as the following associated methods.
 
+-   `[.rdd_data()` / `subset.rdd_data()`
 -   `summary.rdd_data()`
 -   `plot.rdd_data()`
 
@@ -20,15 +21,15 @@ The package is designed to leveredge of existing implementations of
 2013) and `KernSmooth` (M. Wand 2015) packages. Furthermore, general
 algorithms such as non-parametric regression from the `np` package
 (Hayfield and Racine 2008) is made accessible for RDD through the
-`rdd_data` framework. In addition to this, it implements several tools
-for RDD analysis that were previously unavailable.
+`rdd_data` framework.
 
--   Simple visualisation of the data using binned-plot: `plot()`
+In addition to this, it implements several tools for RDD analysis that
+were previously unavailable.
 
 Bandwidth Selection
 -------------------
 
-Two new mehtods for Bandwidth selection are included.
+Two new methods for Bandwidth selection are included.
 
 -   MSE-RDD bandwidth procedure of (G. Imbens and Kalyanaraman 2012):
     `rdd_bw_ik()`
@@ -97,8 +98,8 @@ Both data sets is made available as a `data.frame`. Using the previously
 discuss `rdd_data()` function we can transform a `data.frame` to an
 object of class `rdd_data`, which inherits from `data.frame`.
 
-Here we can the data from the Initiative Nationale du Development
-Humaine (INDH), a development project in Morocco. The data is included
+Here we can the data from the Initiative Nationale pour le Développement
+Humain (INDH), a development project in Morocco. The data is included
 with the package under the name `indh`.
 
     ## [1] "indh"

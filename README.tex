@@ -58,6 +58,8 @@ well as the following associated methods.
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
+  \texttt{{[}.rdd\_data()} / \texttt{subset.rdd\_data()}
+\item
   \texttt{summary.rdd\_data()}
 \item
   \texttt{plot.rdd\_data()}
@@ -68,19 +70,14 @@ The package is designed to leveredge of existing implementations of
 \texttt{rdd} (Dimmery 2013) and \texttt{KernSmooth} (M. Wand 2015)
 packages. Furthermore, general algorithms such as non-parametric
 regression from the \texttt{np} package (Hayfield and Racine 2008) is
-made accessible for RDD through the \texttt{rdd\_data} framework. In
-addition to this, it implements several tools for RDD analysis that were
-previously unavailable.
+made accessible for RDD through the \texttt{rdd\_data} framework.
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Simple visualisation of the data using binned-plot: \texttt{plot()}
-\end{itemize}
+In addition to this, it implements several tools for RDD analysis that
+were previously unavailable.
 
 \subsection{Bandwidth Selection}\label{bandwidth-selection}
 
-Two new mehtods for Bandwidth selection are included.
+Two new methods for Bandwidth selection are included.
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -160,8 +157,8 @@ previously discuss \texttt{rdd\_data()} function we can transform a
 \texttt{data.frame} to an object of class \texttt{rdd\_data}, which
 inherits from \texttt{data.frame}.
 
-Here we can the data from the Initiative Nationale du Development
-Humaine (INDH), a development project in Morocco. The data is included
+Here we can the data from the Initiative Nationale pour le Développement
+Humain (INDH), a development project in Morocco. The data is included
 with the package under the name \texttt{indh}.
 
 \begin{CodeChunk}
