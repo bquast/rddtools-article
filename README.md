@@ -91,8 +91,10 @@ Data
 
 A collection of typical data sets is included in the package.
 
--   INDH, Arcand (2015): `indh`
--   Seminal dataset of Lee (2008): `house`
+-   Initiative Nationale pour le Développement Humain (Arcand, Rieger,
+    and Nguyen 2015): `indh`
+-   Voting in the U.S. House of Representatives (Lee 2008): `house`
+-   STAR dataset (Angrist and Pischke 2008): `STAR_MHE`
 
 Both data sets is made available as a `data.frame`. Using the previously
 discuss `rdd_data()` function we can transform a `data.frame` to an
@@ -259,6 +261,10 @@ new functionality through a familiar API.
 
 References
 ==========
+
+Angrist, Joshua D, and J<span>ö</span>rn-Steffen Pischke. 2008. *Mostly
+Harmless Econometrics: An Empiricist’s Companion*. Princeton university
+press.
 
 Arcand, Rieger, and Nguyen. 2015. “Development Aid and Social Dyanmics
 Data Set.”

@@ -27,7 +27,7 @@ preamble: >
 output:
   md_document
    
-
+  rticles::jss_article 
 bibliography: bibliography.bib
 ---
 
@@ -99,8 +99,9 @@ Test of equal density of covariates: `covarTest_dens()`
 
 A collection of typical data sets is included in the package.
 
-- INDH, Arcand [-@arcand2015development]: `indh`
-- Seminal dataset of Lee [-@lee2008randomized]: `house`
+- Initiative Nationale pour le Développement Humain [@arcand2015development]: `indh`
+- Voting in the U.S. House of Representatives [@lee2008randomized]: `house`
+- STAR dataset [@angrist2008mostly]: `STAR_MHE`
 
 Both data sets is made available as a `data.frame`.
 Using the previously discuss `rdd_data()` function we can transform a `data.frame` to an object of class `rdd_data`, which inherits from `data.frame`.
