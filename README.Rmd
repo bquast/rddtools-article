@@ -38,7 +38,8 @@ The `rddtools` package attempts to provide a unified approach to the application
 
 # Design
 
-A unified framework for RDD is implemented through the `rdd_data` class which inherits from the `R` `base` package's `data.frame` class.
+A unified framework for RDD is implemented through the `rdd_data` class.
+This class inherits from the `R` `base` package's `data.frame` class.
 This functionality is made accessible through the associated `rdd_data()` function,
 as well as the following associated methods.
 
@@ -213,5 +214,10 @@ In addition to this, new tools and algorithms are also implement, as well as var
 
 Future packages implementing further RDD functionality can easily leverage the `rdd_data` framework, which allows users to quickly access new functionality through a familiar API.
 
+
+---
+nocite: | 
+  @zeilis2006sandwich, @zeileis2006object, @wickham2009ggplot2
+...
 
 # References

@@ -7,10 +7,10 @@ application of Regression Discontinuity Design (RDD) in R.
 Design
 ======
 
-A unified framework for RDD is implemented through the `rdd_data` class
-which inherits from the `R` `base` package's `data.frame` class. This
-functionality is made accessible through the associated `rdd_data()`
-function, as well as the following associated methods.
+A unified framework for RDD is implemented through the `rdd_data` class.
+This class inherits from the `R` `base` package's `data.frame` class.
+This functionality is made accessible through the associated
+`rdd_data()` function, as well as the following associated methods.
 
 -   `[.rdd_data()` / `subset.rdd_data()`
 -   `summary.rdd_data()`
@@ -296,3 +296,13 @@ Francis: 1257–70.
 
 Wand, Matt. 2015. *KernSmooth: Functions for Kernel Smoothing Supporting
 Wand & Jones (1995)*. <http://CRAN.R-project.org/package=KernSmooth>.
+
+Wickham, Hadley. 2009. *Ggplot2: Elegant Graphics for Data Analysis*.
+Springer New York. <http://had.co.nz/ggplot2/book>.
+
+Zeileis, Achim. 2004. “Econometric Computing with HC and HAC Covariance
+Matrix Estimators. Journal of Statistical Software.” *Journal of
+Statistical Software* 11 (10). <http://www.jstatsoft.org/v11/i10/>.
+
+———. 2006. “Object-Oriented Computation of Sandwich Estimators” 16 (9).
+Nournal os Statistical Software. <http://www.jstatsoft.org/v16/i09/>.
