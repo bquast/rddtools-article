@@ -22,7 +22,7 @@ Discontinuity Design in R.
 %% \Issue{9}
 %% \Month{June}
 %% \Year{2012}
-\Submitdate{}
+\Submitdate{2015-07-25}
 %% \Acceptdate{2012-06-04}
 
 \Address{
@@ -44,16 +44,16 @@ Discontinuity Design in R.
 
 \section{Introduction}\label{introduction}
 
-The \texttt{rddtools} attempt to provide a unified approach to using
-Regression Discontinuity Design in R.
+The \texttt{rddtools} package attempts to provide a unified approach to
+using Regression Discontinuity Design (RDD) in R.
 
 \section{Design}\label{design}
 
 A unified framework for RDD is implemented through the
 \texttt{rdd\_data} class which inherits from the \texttt{R}
 \texttt{base} package's \texttt{data.frame} class. This functionality is
-made accessible throug hthe associated \texttt{rdd\_data} function, as
-well as the following methods.
+made accessible through the associated \texttt{rdd\_data} function, as
+well as the following associated methods.
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -65,9 +65,8 @@ well as the following methods.
 
 The package is designed to leveredge of existing implementations of
 \textbf{Regression Discontinuity Design} in \texttt{R}, such as the
-\texttt{rdd} package.
-
-It implements several tools for RDD analysis that were previously
+\texttt{rdd} and \texttt{KernSmooth} packages. In addition to this, it
+implements several tools for RDD analysis that were previously
 unavailable.
 
 \begin{itemize}
@@ -76,60 +75,89 @@ unavailable.
   Simple visualisation of the data using binned-plot: \texttt{plot()}
 \end{itemize}
 
+\subsection{Bandwidth Selection}\label{bandwidth-selection}
+
 Two new mehtods for Bandwidth selection are included. - MSE-RDD
 bandwidth procedure of (G. Imbens and Kalyanaraman 2012):
 \texttt{rdd\_bw\_ik()} - MSE global bandwidth procedure of (Ruppert,
 Sheather, and Wand 1995): \texttt{rdd\_bw\_rsw()}
 
-Estimation - RDD parametric estimation: \texttt{rdd\_reg\_lm()} This
-includes specifying the polynomial order, including covariates with
-various specifications as advocated in (G. W. Imbens and Lemieux 2008).
-- RDD local non-parametric estimation: \texttt{rdd\_reg\_np()}. Can also
+\subsection{Estimation}\label{estimation}
+
+RDD parametric estimation: \texttt{rdd\_reg\_lm()} This includes
+specifying the polynomial order, including covariates with various
+specifications as advocated in (G. W. Imbens and Lemieux 2008).
+
+RDD local non-parametric estimation: \texttt{rdd\_reg\_np()}. Can also
 include covariates, and allows different types of inference (fully
-non-parametric, or parametric approximation). - RDD generalised
-estimation: allows to use custom estimating functions to get the RDD
-coefficient. Could allow for example a probit RDD, or quantile
-regression.
+non-parametric, or parametric approximation).
+
+RDD generalised estimation: allows to use custom estimating functions to
+get the RDD coefficient. Could allow for example a probit RDD, or
+quantile regression.
+
+\subsection{Post-Estimation}\label{post-estimation}
 
 A collection of Post-Estimation tools allow the robustness of the
-estimation results to be verified. - Various tools, to obtain
-predictions at given covariate values ( \texttt{rdd\_pred()} ), or to
-convert to other classes, to lm ( \texttt{as.lm()} ), or to the package
-\texttt{np} ( \texttt{as.npreg()} ). - Function to do inference with
-clustered data: \texttt{clusterInf()} either using a cluster covariance
-matrix ( \texttt{vcovCluster()} ) or by a degrees of freedom correction
-(as in (Cameron, Gelbach, and Miller 2008)). - Contains functions to
-replicate the Monte-Carlo simulations of {[}Imbens and Kalyanaraman
-2012{]}: \texttt{gen\_mc\_ik()}
+estimation results to be verified.
 
-Regression sensitivity analysis: - Plot the sensitivity of the
-coefficient with respect to the bandwith: \texttt{plotSensi()} -
+Various tools, to obtain predictions at given covariate values (
+\texttt{rdd\_pred()} ), or to convert to other classes, to lm (
+\texttt{as.lm()} ), or to the package \texttt{np} ( \texttt{as.npreg()}
+).
+
+Function to do inference with clustered data: \texttt{clusterInf()}
+either using a cluster covariance matrix ( \texttt{vcovCluster()} ) or
+by a degrees of freedom correction (as in (Cameron, Gelbach, and Miller
+2008)).
+
+Contains functions to replicate the Monte-Carlo simulations of {[}Imbens
+and Kalyanaraman 2012{]}: \texttt{gen\_mc\_ik()}
+
+\subsection{Regression Sensitivity
+Analysis}\label{regression-sensitivity-analysis}
+
+Plot the sensitivity of the coefficient with respect to the bandwith:
+\texttt{plotSensi()}
+
 \textbf{Placebo plot} using different cutpoints: \texttt{plotPlacebo()}
-- Design sensitivity analysis: - McCrary test of manipulation of the
-forcing variable: wrapper \texttt{dens\_test()} to the function
-\texttt{DCdensity()} from package \texttt{rdd}. - Test of equal means of
-covariates: \texttt{covarTest\_mean()} - Test of equal density of
-covariates: \texttt{covarTest\_dens()}
+
+\subsection{Design sensitivity
+analysis}\label{design-sensitivity-analysis}
+
+McCrary test of manipulation of the forcing variable: wrapper
+\texttt{dens\_test()} to the function \texttt{DCdensity()} from package
+\texttt{rdd}.
+
+Test of equal means of covariates: \texttt{covarTest\_mean()}
+
+Test of equal density of covariates: \texttt{covarTest\_dens()}
 
 \section{Data}\label{data}
 
-A collection of typical data sets is included in the package. - INDH,
-Arcand (2015): \texttt{indh} - Seminal dataset of Lee (2008):
-\texttt{house}
+A collection of typical data sets is included in the package.
 
-The each data set is made available as a \texttt{data.frame}. Using the
-previously discuss \texttt{rdd\_data()} function we can transform such a
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  INDH, Arcand (2015): \texttt{indh}
+\item
+  Seminal dataset of Lee (2008): \texttt{house}
+\end{itemize}
+
+Both data sets is made available as a \texttt{data.frame}. Using the
+previously discuss \texttt{rdd\_data()} function we can transform a
 \texttt{data.frame} to an object of class \texttt{rdd\_data}, which
 inherits from \texttt{data.frame}.
 
-For instance, we can use the data from the Initiative Nationale du
-Development Humaine (INDH) a development project in Morocco. The data is
-included with the package under the name \texttt{indh}.
+Here we can the data from the Initiative Nationale du Development
+Humaine (INDH), a development project in Morocco. The data is included
+with the package under the name \texttt{indh}.
 
 \begin{CodeChunk}
-\begin{CodeInput}
-data("indh")
-\end{CodeInput}
+\begin{CodeOutput}
+[1] "indh"
+\end{CodeOutput}
 \end{CodeChunk}
 
 Now that we have loading the data we can briefly inspect the structure
@@ -172,8 +200,8 @@ using a \textbf{Community Driven Development} scheme. The cutoff point
 for our analysis is therefore \texttt{30}.
 
 We can now transform the \texttt{data.frame} to a special
-\texttt{rdd\_data} \texttt{data.frame} using the \texttt{rdd\_data()}
-function.
+\texttt{rdd\_data}-class object, inhereting from the \texttt{data.frame}
+class using the \texttt{rdd\_data()} function.
 
 \begin{CodeChunk}
 \begin{CodeInput}
@@ -184,7 +212,14 @@ rdd_dat_indh <- rdd_data(y=choice_pg,
 \end{CodeInput}
 \end{CodeChunk}
 
-The structure is similar but contains some additional information.
+The \texttt{rdd\_data()} can be used using the \texttt{data} argument,
+in which case the function will look for the values o \texttt{y} and
+\texttt{x} in this argument (before looking in the \texttt{.GlobalEnv}),
+if this argument is \texttt{NULL}, only the \texttt{.GlobalEnv} will be
+scanned.
+
+The structure is similar to the original \texttt{data.frame} object, but
+contains some additional information.
 
 \begin{CodeChunk}
 \begin{CodeInput}
@@ -200,6 +235,14 @@ Classes 'rdd_data' and 'data.frame':    720 obs. of  2 variables:
  - attr(*, "type")= chr "Sharp"
 \end{CodeOutput}
 \end{CodeChunk}
+
+Thee \texttt{rdd\_data} object has the classes \texttt{data.frame} and
+\texttt{rdd\_data}. It contains two variables, \texttt{y} the
+explanandum or dependent variable and \texttt{x} the explanans or
+driving variable, which is also our discontinuous variable. Related to
+the discontinuous variable is the \texttt{attribute} called
+\texttt{cutpoint}, which describes where in the domain of \texttt{x} the
+discontinuity occurs. Additional exogenous variab
 
 \section{Analysis}\label{analysis}
 
@@ -230,16 +273,17 @@ plot(rdd_dat_indh[1:715,])
 \end{CodeInput}
 
 
-\begin{center}\includegraphics{README_files/figure-latex/unnamed-chunk-7-1} \end{center}
+\begin{center}\includegraphics{README_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
 \end{CodeChunk}
 
 We can now continue with a standard Regression Discontinuity Design
-(RDD) estimation.
+estimation.
 
 \begin{CodeChunk}
 \begin{CodeInput}
-(reg_para <- rdd_reg_lm(rdd_dat_indh, order=4))
+reg_para <- rdd_reg_lm(rdd_dat_indh, order=4)
+print(reg_para) # uses print.rdd_data
 \end{CodeInput}
 \begin{CodeOutput}
 ### RDD regression: parametric ###
@@ -261,7 +305,7 @@ plot(reg_para)
 \end{CodeInput}
 
 
-\begin{center}\includegraphics{README_files/figure-latex/unnamed-chunk-9-1} \end{center}
+\begin{center}\includegraphics{README_files/figure-latex/unnamed-chunk-8-1} \end{center}
 
 \end{CodeChunk}
 
@@ -292,7 +336,7 @@ plot(reg_nonpara)
 \end{CodeInput}
 
 
-\begin{center}\includegraphics{README_files/figure-latex/unnamed-chunk-11-1} \end{center}
+\begin{center}\includegraphics{README_files/figure-latex/unnamed-chunk-10-1} \end{center}
 
 \end{CodeChunk}
 
@@ -304,7 +348,7 @@ plotSensi(reg_nonpara, from=0.05, to=1, by=0.1)
 \end{CodeInput}
 
 
-\begin{center}\includegraphics{README_files/figure-latex/unnamed-chunk-12-1} \end{center}
+\begin{center}\includegraphics{README_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
 \end{CodeChunk}
 

@@ -33,67 +33,81 @@ bibliography: bibliography.bib
 
 # Introduction
 
-The `rddtools` attempt to provide a unified approach to using Regression Discontinuity Design in R.
+The `rddtools` package attempts to provide a unified approach to using Regression Discontinuity Design (RDD) in R.
 
 
 # Design
 
 A unified framework for RDD is implemented through the `rdd_data` class which inherits from the `R` `base` package's `data.frame` class.
-This functionality is made accessible throug hthe associated `rdd_data` function,
-as well as the following methods.
+This functionality is made accessible through the associated `rdd_data` function,
+as well as the following associated methods.
 
 - `summary.rdd_data()`
 - `plot.rdd_data()`
 
-The package is designed to leveredge of existing implementations of **Regression Discontinuity Design** in `R`, such as the `rdd` package.
-
-It implements several tools for RDD analysis that were previously unavailable.
+The package is designed to leveredge of existing implementations of **Regression Discontinuity Design** in `R`, such as the `rdd` and `KernSmooth` packages.
+In addition to this, it implements several tools for RDD analysis that were previously unavailable.
 
 - Simple visualisation of the data using binned-plot: `plot()`
 
+## Bandwidth Selection
 
 Two new mehtods for Bandwidth selection are included.
     - MSE-RDD bandwidth procedure of [@imbens2012optimal]: `rdd_bw_ik()`
     - MSE global bandwidth procedure of [@ruppert1995effective]: `rdd_bw_rsw()`
     
-Estimation
-    -  RDD parametric estimation: `rdd_reg_lm()` This includes specifying the polynomial order, including covariates with various specifications as advocated in [@imbens2008regression].
-    -  RDD local non-parametric estimation: `rdd_reg_np()`. Can also include covariates, and allows different types of inference (fully non-parametric, or parametric approximation). 
-    -  RDD generalised estimation: allows to use custom estimating functions to get the RDD coefficient. Could allow for example a probit RDD, or quantile regression.
+##Estimation
+RDD parametric estimation: `rdd_reg_lm()` This includes specifying the polynomial order, including covariates with various specifications as advocated in [@imbens2008regression].
+
+RDD local non-parametric estimation: `rdd_reg_np()`. Can also include covariates, and allows different types of inference (fully non-parametric, or parametric approximation). 
+
+RDD generalised estimation: allows to use custom estimating functions to get the RDD coefficient. Could allow for example a probit RDD, or quantile regression.
     
+
+## Post-Estimation
     
 A collection of Post-Estimation tools allow the robustness of the estimation results to be verified.
-    - Various tools, to obtain predictions at given covariate values ( `rdd_pred()` ), or to convert to other classes, to lm ( `as.lm()` ), or to the package `np` ( `as.npreg()` ). 
-    - Function to do inference with clustered data: `clusterInf()` either using a cluster covariance matrix ( ``vcovCluster()`` ) or by a degrees of freedom correction (as in [@cameron2008bootstrap]).
-    - Contains functions to replicate the Monte-Carlo simulations of [Imbens and Kalyanaraman 2012]: `gen_mc_ik()`
 
-Regression sensitivity analysis:
-    - Plot the sensitivity of the coefficient with respect to the bandwith: `plotSensi()`
-    - **Placebo plot** using different cutpoints: `plotPlacebo()`
-- Design sensitivity analysis:
-    - McCrary test of manipulation of the forcing variable: wrapper `dens_test()` to the function `DCdensity()` from package `rdd`. 
-    - Test of equal means of covariates: `covarTest_mean()`
-    - Test of equal density of covariates: `covarTest_dens()`
+Various tools, to obtain predictions at given covariate values ( `rdd_pred()` ), or to convert to other classes, to lm ( `as.lm()` ), or to the package `np` ( `as.npreg()` ). 
+
+Function to do inference with clustered data: `clusterInf()` either using a cluster covariance matrix ( ``vcovCluster()`` ) or by a degrees of freedom correction (as in [@cameron2008bootstrap]).
+
+Contains functions to replicate the Monte-Carlo simulations of [Imbens and Kalyanaraman 2012]: `gen_mc_ik()`
+
+
+
+## Regression Sensitivity Analysis
+
+Plot the sensitivity of the coefficient with respect to the bandwith: `plotSensi()`
+
+**Placebo plot** using different cutpoints: `plotPlacebo()`
+
+## Design sensitivity analysis
+
+McCrary test of manipulation of the forcing variable: wrapper `dens_test()` to the function `DCdensity()` from package `rdd`. 
+
+Test of equal means of covariates: `covarTest_mean()`
+
+Test of equal density of covariates: `covarTest_dens()`
 
 
 # Data
 
 A collection of typical data sets is included in the package.
-    - INDH, Arcand [-@arcand2015development]: `indh`
-    - Seminal dataset of Lee [-@lee2008randomized]: `house`
 
-The each data set is made available as a `data.frame`.
-Using the previously discuss `rdd_data()` function we can transform such a `data.frame` to an object of class `rdd_data`, which inherits from `data.frame`.
+- INDH, Arcand [-@arcand2015development]: `indh`
+- Seminal dataset of Lee [-@lee2008randomized]: `house`
 
-For instance, we can use the data from the Initiative Nationale du Development Humaine (INDH) a development project in Morocco.
+Both data sets is made available as a `data.frame`.
+Using the previously discuss `rdd_data()` function we can transform a `data.frame` to an object of class `rdd_data`, which inherits from `data.frame`.
+
+Here we can the data from the Initiative Nationale du Development Humaine (INDH), a development project in Morocco.
 The data is included with the package under the name `indh`.
 
 ```{r, echo=FALSE, message=FALSE}
 library(rddtools)
-```
-
-```{r}
 data("indh")
+ls()
 ```
 
 Now that we have loading the data we can briefly inspect the structure of the data.
@@ -113,7 +127,7 @@ The forcing variable is `poverty` which represents the number of households in a
 As part of the INDH, commune with a proportion of household below the poverty threshhold greater than 30% were allowed to distribute the funding using a **Community Driven Development** scheme.
 The cutoff point for our analysis is therefore `30`.
 
-We can now transform the `data.frame` to a special `rdd_data` `data.frame` using the `rdd_data()` function.
+We can now transform the `data.frame` to a special `rdd_data`-class object, inhereting from the `data.frame` class using the `rdd_data()` function.
 
 ```{r}
 rdd_dat_indh <- rdd_data(y=choice_pg,
@@ -122,11 +136,19 @@ rdd_dat_indh <- rdd_data(y=choice_pg,
                          cutpoint=30 )
 ```
 
-The structure is similar but contains some additional information.
+The `rdd_data()` can be used using the `data` argument, in which case the function will look for the values o `y` and `x` in this argument (before looking in the `.GlobalEnv`), if this argument is `NULL`, only the `.GlobalEnv` will be scanned.
+
+The structure is similar to the original `data.frame` object, but contains some additional information.
 
 ```{r}
 str(rdd_dat_indh)
 ```
+
+Thee `rdd_data` object has the classes `data.frame` and `rdd_data`.
+It contains two variables, `y` the explanandum or dependent variable and `x` the explanans or driving variable, which is also our discontinuous variable.
+Related to the discontinuous variable is the `attribute` called `cutpoint`, which describes where in the domain of `x` the discontinuity occurs.
+Additional exogenous variab
+
 
 
 # Analysis
@@ -143,10 +165,11 @@ summary(rdd_dat_indh)
 plot(rdd_dat_indh[1:715,])
 ```
 
-We can now continue with a standard Regression Discontinuity Design (RDD) estimation.
+We can now continue with a standard Regression Discontinuity Design estimation.
 
 ```{r}
-(reg_para <- rdd_reg_lm(rdd_dat_indh, order=4))
+reg_para <- rdd_reg_lm(rdd_dat_indh, order=4)
+print(reg_para) # uses print.rdd_data
 ```
 
 and visualising this estimation.
