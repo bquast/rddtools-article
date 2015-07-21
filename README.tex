@@ -45,14 +45,14 @@ Discontinuity Design in R.
 \section{Introduction}\label{introduction}
 
 The \texttt{rddtools} package attempts to provide a unified approach to
-using Regression Discontinuity Design (RDD) in R.
+the application of Regression Discontinuity Design (RDD) in R.
 
 \section{Design}\label{design}
 
 A unified framework for RDD is implemented through the
 \texttt{rdd\_data} class which inherits from the \texttt{R}
 \texttt{base} package's \texttt{data.frame} class. This functionality is
-made accessible through the associated \texttt{rdd\_data} function, as
+made accessible through the associated \texttt{rdd\_data()} function, as
 well as the following associated methods.
 
 \begin{itemize}
@@ -65,9 +65,12 @@ well as the following associated methods.
 
 The package is designed to leveredge of existing implementations of
 \textbf{Regression Discontinuity Design} in \texttt{R}, such as the
-\texttt{rdd} and \texttt{KernSmooth} packages. In addition to this, it
-implements several tools for RDD analysis that were previously
-unavailable.
+\texttt{rdd} (Dimmery 2013) and \texttt{KernSmooth} (M. Wand 2015)
+packages. Furthermore, general algorithms such as non-parametric
+regression from the \texttt{np} package (Hayfield and Racine 2008) is
+made accessible for RDD through the \texttt{rdd\_data} framework. In
+addition to this, it implements several tools for RDD analysis that were
+previously unavailable.
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -77,10 +80,17 @@ unavailable.
 
 \subsection{Bandwidth Selection}\label{bandwidth-selection}
 
-Two new mehtods for Bandwidth selection are included. - MSE-RDD
-bandwidth procedure of (G. Imbens and Kalyanaraman 2012):
-\texttt{rdd\_bw\_ik()} - MSE global bandwidth procedure of (Ruppert,
-Sheather, and Wand 1995): \texttt{rdd\_bw\_rsw()}
+Two new mehtods for Bandwidth selection are included.
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  MSE-RDD bandwidth procedure of (G. Imbens and Kalyanaraman 2012):
+  \texttt{rdd\_bw\_ik()}
+\item
+  MSE global bandwidth procedure of (Ruppert, Sheather, and Wand 1995):
+  \texttt{rdd\_bw\_rsw()}
+\end{itemize}
 
 \subsection{Estimation}\label{estimation}
 
@@ -382,6 +392,13 @@ Cameron, A Colin, Jonah B Gelbach, and Douglas L Miller. 2008.
 \emph{The Review of Economics and Statistics} 90 (3). MIT Press:
 414--27.
 
+Dimmery, Drew. 2013. \emph{Rdd: Regression Discontinuity Estimation}.
+\url{http://CRAN.R-project.org/package=rdd}.
+
+Hayfield, Tristen, and Jeffrey S. Racine. 2008. ``Nonparametric
+Econometrics: The Np Package.'' \emph{Journal of Statistical Software}
+27 (5). \url{http://www.jstatsoft.org/v27/i05/}.
+
 Imbens, Guido W, and Thomas Lemieux. 2008. ``Regression Discontinuity
 Designs: A Guide to Practice.'' \emph{Journal of Econometrics} 142 (2).
 Elsevier: 615--35.
@@ -397,6 +414,10 @@ Ruppert, David, Simon J Sheather, and Matthew P Wand. 1995. ``An
 Effective Bandwidth Selector for Local Least Squares Regression.''
 \emph{Journal of the American Statistical Association} 90 (432). Taylor
 \& Francis: 1257--70.
+
+Wand, Matt. 2015. \emph{KernSmooth: Functions for Kernel Smoothing
+Supporting Wand \& Jones (1995)}.
+\url{http://CRAN.R-project.org/package=KernSmooth}.
 
 \end{document}
 

@@ -33,19 +33,20 @@ bibliography: bibliography.bib
 
 # Introduction
 
-The `rddtools` package attempts to provide a unified approach to using Regression Discontinuity Design (RDD) in R.
+The `rddtools` package attempts to provide a unified approach to the application of Regression Discontinuity Design (RDD) in R.
 
 
 # Design
 
 A unified framework for RDD is implemented through the `rdd_data` class which inherits from the `R` `base` package's `data.frame` class.
-This functionality is made accessible through the associated `rdd_data` function,
+This functionality is made accessible through the associated `rdd_data()` function,
 as well as the following associated methods.
 
 - `summary.rdd_data()`
 - `plot.rdd_data()`
 
-The package is designed to leveredge of existing implementations of **Regression Discontinuity Design** in `R`, such as the `rdd` and `KernSmooth` packages.
+The package is designed to leveredge of existing implementations of **Regression Discontinuity Design** in `R`, such as the `rdd` [@dimmery2013rdd] and `KernSmooth` [@wand2015kernsmooth] packages.
+Furthermore, general algorithms such as non-parametric regression from the `np` package [@hayfield2008np] is made accessible for RDD through the `rdd_data` framework.
 In addition to this, it implements several tools for RDD analysis that were previously unavailable.
 
 - Simple visualisation of the data using binned-plot: `plot()`
@@ -53,8 +54,9 @@ In addition to this, it implements several tools for RDD analysis that were prev
 ## Bandwidth Selection
 
 Two new mehtods for Bandwidth selection are included.
-    - MSE-RDD bandwidth procedure of [@imbens2012optimal]: `rdd_bw_ik()`
-    - MSE global bandwidth procedure of [@ruppert1995effective]: `rdd_bw_rsw()`
+
+ - MSE-RDD bandwidth procedure of [@imbens2012optimal]: `rdd_bw_ik()`
+ - MSE global bandwidth procedure of [@ruppert1995effective]: `rdd_bw_rsw()`
     
 ##Estimation
 RDD parametric estimation: `rdd_reg_lm()` This includes specifying the polynomial order, including covariates with various specifications as advocated in [@imbens2008regression].

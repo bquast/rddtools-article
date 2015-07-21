@@ -1,23 +1,26 @@
 Introduction
 ============
 
-The `rddtools` package attempts to provide a unified approach to using
-Regression Discontinuity Design (RDD) in R.
+The `rddtools` package attempts to provide a unified approach to the
+application of Regression Discontinuity Design (RDD) in R.
 
 Design
 ======
 
 A unified framework for RDD is implemented through the `rdd_data` class
 which inherits from the `R` `base` package's `data.frame` class. This
-functionality is made accessible through the associated `rdd_data`
+functionality is made accessible through the associated `rdd_data()`
 function, as well as the following associated methods.
 
 -   `summary.rdd_data()`
 -   `plot.rdd_data()`
 
 The package is designed to leveredge of existing implementations of
-**Regression Discontinuity Design** in `R`, such as the `rdd` and
-`KernSmooth` packages. In addition to this, it implements several tools
+**Regression Discontinuity Design** in `R`, such as the `rdd` (Dimmery
+2013) and `KernSmooth` (M. Wand 2015) packages. Furthermore, general
+algorithms such as non-parametric regression from the `np` package
+(Hayfield and Racine 2008) is made accessible for RDD through the
+`rdd_data` framework. In addition to this, it implements several tools
 for RDD analysis that were previously unavailable.
 
 -   Simple visualisation of the data using binned-plot: `plot()`
@@ -25,10 +28,12 @@ for RDD analysis that were previously unavailable.
 Bandwidth Selection
 -------------------
 
-Two new mehtods for Bandwidth selection are included. - MSE-RDD
-bandwidth procedure of (G. Imbens and Kalyanaraman 2012):
-`rdd_bw_ik()` - MSE global bandwidth procedure of (Ruppert, Sheather,
-and Wand 1995): `rdd_bw_rsw()`
+Two new mehtods for Bandwidth selection are included.
+
+-   MSE-RDD bandwidth procedure of (G. Imbens and Kalyanaraman 2012):
+    `rdd_bw_ik()`
+-   MSE global bandwidth procedure of (Ruppert, Sheather, and Wand
+    1995): `rdd_bw_rsw()`
 
 Estimation
 ----------
@@ -261,6 +266,13 @@ Cameron, A Colin, Jonah B Gelbach, and Douglas L Miller. 2008.
 “Bootstrap-Based Improvements for Inference with Clustered Errors.” *The
 Review of Economics and Statistics* 90 (3). MIT Press: 414–27.
 
+Dimmery, Drew. 2013. *Rdd: Regression Discontinuity Estimation*.
+<http://CRAN.R-project.org/package=rdd>.
+
+Hayfield, Tristen, and Jeffrey S. Racine. 2008. “Nonparametric
+Econometrics: The Np Package.” *Journal of Statistical Software* 27 (5).
+<http://www.jstatsoft.org/v27/i05/>.
+
 Imbens, Guido W, and Thomas Lemieux. 2008. “Regression Discontinuity
 Designs: A Guide to Practice.” *Journal of Econometrics* 142 (2).
 Elsevier: 615–35.
@@ -276,3 +288,6 @@ Ruppert, David, Simon J Sheather, and Matthew P Wand. 1995. “An
 Effective Bandwidth Selector for Local Least Squares Regression.”
 *Journal of the American Statistical Association* 90 (432). Taylor &
 Francis: 1257–70.
+
+Wand, Matt. 2015. *KernSmooth: Functions for Kernel Smoothing Supporting
+Wand & Jones (1995)*. <http://CRAN.R-project.org/package=KernSmooth>.
