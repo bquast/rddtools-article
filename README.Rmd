@@ -55,45 +55,63 @@ In addition to this, it implements several tools for RDD analysis that were prev
 
 ## Bandwidth Selection
 
-Two new methods for Bandwidth selection are included.
-
- - MSE-RDD bandwidth procedure of [@imbens2012optimal]: `rdd_bw_ik()`
- - MSE global bandwidth procedure of [@ruppert1995effective]: `rdd_bw_rsw()`
+The `rddtools` package implements two new methods for bandwidth selection.
+The first is the MSE-RDD bandwidth procedure of [@imbens2012optimal].
+This procdure is implemented in the `rdd_bw_ik()` function. 
+Secondly, the MSE global bandwidth procedure of [@ruppert1995effective] is implemented in the `rdd_bw_rsw()` function.
     
     
 ## Estimation
 
-RDD parametric estimation: `rdd_reg_lm()` This includes specifying the polynomial order, including covariates with various specifications as advocated in [@imbens2008regression].
+Various types of RDD estimation are supported.
+The functionality has been implemented in such a way,
+that the change from one estimation method to another is as small as possible.
 
-RDD local non-parametric estimation: `rdd_reg_np()`. Can also include covariates, and allows different types of inference (fully non-parametric, or parametric approximation). 
+Firstly, RDD parametric estimation though the `rdd_reg_lm()` function is implemented.
+The `rdd-reg_lm()` fnction includes functionality for specifying the polynomial order,
+including covariates with various specifications as advocated in [@imbens2008regression].
 
-RDD generalised estimation: allows to use custom estimating functions to get the RDD coefficient. Could allow for example a probit RDD, or quantile regression.
+Secondly, RDD local non-parametric estimation is available by means of the `rdd_reg_np()` function.
+The `rdd_reg_np()` function can also include covariates
+and allows different types of inference ( such as fully non-parametric, or parametric approximation).
+
+Lastly, RDD generalised estimation has been implemented.
+This allows to use custom estimating functions to get the RDD coefficient.
+For example a probit RDD, or quantile regression could be used here.
     
 
 ## Post-Estimation
     
 A collection of Post-Estimation tools allow the robustness of the estimation results to be verified.
 
-Various tools, to obtain predictions at given covariate values ( `rdd_pred()` ), or to convert to other classes, to lm ( `as.lm()` ), or to the package `np` ( `as.npreg()` ). 
+This includes various tools, such as the `rdd_pred()`, which is used to obtain predictions at given covariate values.
+As well as the `as.lm()` function, which is used to convert to the lm class.
+Furthermore there is the `as.npreg()` function, in order to convert to the `np` package.
 
-Function to do inference with clustered data: `clusterInf()` either using a cluster covariance matrix ( ``vcovCluster()`` ) or by a degrees of freedom correction (as in [@cameron2008bootstrap]).
+Additional post-estmimation tools include `clusterInf()`, which can be used for inference with clustered data,
+using eithera covariance matrix (using the `vcovCluster()` function),
+or by a degrees of freedom corrention (as described in [@cameron2008bootstrap]).
 
-Contains functions to replicate the Monte-Carlo simulations of [Imbens and Kalyanaraman 2012]: `gen_mc_ik()`
+Finally, the package contains functions to replicate the Monte-Carlo simulations of [Imbens and Kalyanaraman 2012],
+using the `gen_mc_ik()` function.
 
 
 ## Regression Sensitivity Analysis
 
-Plot the sensitivity of the coefficient with respect to the bandwith: `plotSensi()`
+Regression sensitivity analysis can be conducted using the `plotSense()` function,
+which test the sensitivity of the coefficient with respect to the bandwidth,
+or by means of **Placebo plot** using different cutpoints: `plotPlacebo()`
 
-**Placebo plot** using different cutpoints: `plotPlacebo()`
 
 ## Design sensitivity analysis
 
-McCrary test of manipulation of the forcing variable: wrapper `dens_test()` to the function `DCdensity()` from package `rdd`. 
+Finally, methods for design sensitivity analysis are included.
 
-Test of equal means of covariates: `covarTest_mean()`
+The McCrary test of manipulation of the forcing variable is available by passing the wrapper `dens_test()` to the function `DCdensity()` from package `rdd`. 
 
-Test of equal density of covariates: `covarTest_dens()`
+As well as, the test of equal means of covariates, which can be performed using the `covarTest_mean()` function.
+
+In addition to this, the test of equal density of covariates is available via the `covarTest_dens()` function.
 
 
 # Data
@@ -104,10 +122,10 @@ A collection of typical data sets is included in the package.
 - Voting in the U.S. House of Representatives [@lee2008randomized]: `house`
 - STAR dataset [@angrist2008mostly]: `STAR_MHE`
 
-All three data sets are made available as a `data.frame`.
-Using the previously discuss `rdd_data()` function we can transform a `data.frame` to an object of class `rdd_data`, which inherits from `data.frame`.
+All three data sets are made available as `data.frame` objects.
+Using the previously discussed `rdd_data()` function we can transform such a `data.frame` object to an object of class `rdd_data` (which inherits from the `data.frame` object class).
 
-Here we can the data from the Initiative Nationale pour le Développement Humain (INDH), a development project in Morocco.
+Here we take the data set from the Initiative Nationale pour le Développement Humain (INDH), a development project in Morocco.
 The data is included with the package under the name `indh`.
 
 ```{r setup, echo=FALSE, message=FALSE}
@@ -116,7 +134,7 @@ data("indh")
 ls()
 ```
 
-Now that we have loading the data we can briefly inspect the structure of the data.
+After having loaded the data, we start with inspecting it's structure.
 
 ```{r df-str, out.width='\\textwidth'}
 str(indh)
@@ -142,7 +160,7 @@ rdd_dat_indh <- rdd_data(y=choice_pg,
                          cutpoint=30 )
 ```
 
-The `rdd_data()` can be used using the `data` argument, in which case the function will look for the values o `y` and `x` in this argument (before looking in the `.GlobalEnv`), if this argument is `NULL`, only the `.GlobalEnv` will be scanned.
+The `rdd_data()` can be used using the `data` argument, in which case the function will look for the values of `y` and `x` in this argument (before looking in the `.GlobalEnv`), if this argument is `NULL`, only the `.GlobalEnv` will be scanned.
 Additional exogenous variables can be included using the `covar` argument.
 
 The structure is similar to the original `data.frame` object, but contains some additional information.
@@ -171,6 +189,8 @@ summary(rdd_dat_indh)
 plot(rdd_dat_indh)
 ```
 
+## Parametric Estimation
+
 We can now continue with a standard Regression Discontinuity Design estimation.
 
 ```{r reg_para}
@@ -183,6 +203,8 @@ and visualising this estimation.
 ```{r plot-reg_para}
 plot(reg_para)
 ```
+
+## Non-parametric Estimation
 
 In addition to the parametric estimation, we can also perform a non-parametric estimation.
 
@@ -198,21 +220,27 @@ and visualising the non-parametric estimation.
 plot(reg_nonpara)
 ```
 
-Sensitivity tests.
+## Sensitivity tests.
+
+In addition to this, sepeveral sensitivity tests for the parametric and non-parametric estimation methods have been implemented.
 
 ```{r sensi}
 plotSensi(reg_nonpara, from=0.05, to=1, by=0.1)
 ```
 
+In addition to the sensitivity test, we can also perform various other test such as a placebo test.
 
 # Conclusion and Discussion
 
 The package `rddtools` provides a unified framework for working with Regression Discontinuity Data in `R`.
 Functionality already available is several existing packages, such as `rdd` and `KernSmooth` can now easily be utilised using the `rdd_data` framework, as well as several linking functions.
 
-In addition to this, new tools and algorithms are also implement, as well as various post-estimation robustness checks.
+In addition to this, new tools and algorithms have also been implemented
+Furthermore, various post-estimation robustness checks are also included in the package.
 
-Future packages implementing further RDD functionality can easily leverage the `rdd_data` framework, which allows users to quickly access new functionality through a familiar API.
+In addition to the various procedures discussed here,
+future packages implementing further RDD functionality can easily leverage the `rdd_data` framework,
+which will allow users to quickly access this new functionality through a familiar API.
 
 
 ---

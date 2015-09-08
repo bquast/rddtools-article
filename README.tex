@@ -78,68 +78,77 @@ were previously unavailable.
 
 \subsection{Bandwidth Selection}\label{bandwidth-selection}
 
-Two new methods for Bandwidth selection are included.
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  MSE-RDD bandwidth procedure of (G. Imbens and Kalyanaraman 2012):
-  \texttt{rdd\_bw\_ik()}
-\item
-  MSE global bandwidth procedure of (Ruppert, Sheather, and Wand 1995):
-  \texttt{rdd\_bw\_rsw()}
-\end{itemize}
+The \texttt{rddtools} package implements two new methods for bandwidth
+selection. The first is the MSE-RDD bandwidth procedure of (G. Imbens
+and Kalyanaraman 2012). This procdure is implemented in the
+\texttt{rdd\_bw\_ik()} function. Secondly, the MSE global bandwidth
+procedure of (Ruppert, Sheather, and Wand 1995) is implemented in the
+\texttt{rdd\_bw\_rsw()} function.
 
 \subsection{Estimation}\label{estimation}
 
-RDD parametric estimation: \texttt{rdd\_reg\_lm()} This includes
-specifying the polynomial order, including covariates with various
-specifications as advocated in (G. W. Imbens and Lemieux 2008).
+Various types of RDD estimation are supported. The functionality has
+been implemented in such a way, that the change from one estimation
+method to another is as small as possible.
 
-RDD local non-parametric estimation: \texttt{rdd\_reg\_np()}. Can also
-include covariates, and allows different types of inference (fully
-non-parametric, or parametric approximation).
+Firstly, RDD parametric estimation though the \texttt{rdd\_reg\_lm()}
+function is implemented. The \texttt{rdd-reg\_lm()} fnction includes
+functionality for specifying the polynomial order, including covariates
+with various specifications as advocated in (G. W. Imbens and Lemieux
+2008).
 
-RDD generalised estimation: allows to use custom estimating functions to
-get the RDD coefficient. Could allow for example a probit RDD, or
-quantile regression.
+Secondly, RDD local non-parametric estimation is available by means of
+the \texttt{rdd\_reg\_np()} function. The \texttt{rdd\_reg\_np()}
+function can also include covariates and allows different types of
+inference ( such as fully non-parametric, or parametric approximation).
+
+Lastly, RDD generalised estimation has been implemented. This allows to
+use custom estimating functions to get the RDD coefficient. For example
+a probit RDD, or quantile regression could be used here.
 
 \subsection{Post-Estimation}\label{post-estimation}
 
 A collection of Post-Estimation tools allow the robustness of the
 estimation results to be verified.
 
-Various tools, to obtain predictions at given covariate values (
-\texttt{rdd\_pred()} ), or to convert to other classes, to lm (
-\texttt{as.lm()} ), or to the package \texttt{np} ( \texttt{as.npreg()}
-).
+This includes various tools, such as the \texttt{rdd\_pred()}, which is
+used to obtain predictions at given covariate values. As well as the
+\texttt{as.lm()} function, which is used to convert to the lm class.
+Furthermore there is the \texttt{as.npreg()} function, in order to
+convert to the \texttt{np} package.
 
-Function to do inference with clustered data: \texttt{clusterInf()}
-either using a cluster covariance matrix ( \texttt{vcovCluster()} ) or
-by a degrees of freedom correction (as in (Cameron, Gelbach, and Miller
+Additional post-estmimation tools include \texttt{clusterInf()}, which
+can be used for inference with clustered data, using eithera covariance
+matrix (using the \texttt{vcovCluster()} function), or by a degrees of
+freedom corrention (as described in (Cameron, Gelbach, and Miller
 2008)).
 
-Contains functions to replicate the Monte-Carlo simulations of {[}Imbens
-and Kalyanaraman 2012{]}: \texttt{gen\_mc\_ik()}
+Finally, the package contains functions to replicate the Monte-Carlo
+simulations of {[}Imbens and Kalyanaraman 2012{]}, using the
+\texttt{gen\_mc\_ik()} function.
 
 \subsection{Regression Sensitivity
 Analysis}\label{regression-sensitivity-analysis}
 
-Plot the sensitivity of the coefficient with respect to the bandwith:
-\texttt{plotSensi()}
-
+Regression sensitivity analysis can be conducted using the
+\texttt{plotSense()} function, which test the sensitivity of the
+coefficient with respect to the bandwidth, or by means of
 \textbf{Placebo plot} using different cutpoints: \texttt{plotPlacebo()}
 
 \subsection{Design sensitivity
 analysis}\label{design-sensitivity-analysis}
 
-McCrary test of manipulation of the forcing variable: wrapper
-\texttt{dens\_test()} to the function \texttt{DCdensity()} from package
-\texttt{rdd}.
+Finally, methods for design sensitivity analysis are included.
 
-Test of equal means of covariates: \texttt{covarTest\_mean()}
+The McCrary test of manipulation of the forcing variable is available by
+passing the wrapper \texttt{dens\_test()} to the function
+\texttt{DCdensity()} from package \texttt{rdd}.
 
-Test of equal density of covariates: \texttt{covarTest\_dens()}
+As well as, the test of equal means of covariates, which can be
+performed using the \texttt{covarTest\_mean()} function.
+
+In addition to this, the test of equal density of covariates is
+available via the \texttt{covarTest\_dens()} function.
 
 \section{Data}\label{data}
 
@@ -156,23 +165,26 @@ A collection of typical data sets is included in the package.
   STAR dataset (Angrist and Pischke 2008): \texttt{STAR\_MHE}
 \end{itemize}
 
-All three data sets are made available as a \texttt{data.frame}. Using
-the previously discuss \texttt{rdd\_data()} function we can transform a
-\texttt{data.frame} to an object of class \texttt{rdd\_data}, which
-inherits from \texttt{data.frame}.
+All three data sets are made available as \texttt{data.frame} objects.
+Using the previously discussed \texttt{rdd\_data()} function we can
+transform such a \texttt{data.frame} object to an object of class
+\texttt{rdd\_data} (which inherits from the \texttt{data.frame} object
+class).
 
-Here we can the data from the Initiative Nationale pour le Développement
-Humain (INDH), a development project in Morocco. The data is included
-with the package under the name \texttt{indh}.
+Here we take the data set from the Initiative Nationale pour le
+Développement Humain (INDH), a development project in Morocco. The data
+is included with the package under the name \texttt{indh}.
 
 \begin{CodeChunk}
+\begin{CodeOutput}
+Warning: package 'car' was built under R version 3.2.2
+\end{CodeOutput}
 \begin{CodeOutput}
 [1] "indh"
 \end{CodeOutput}
 \end{CodeChunk}
 
-Now that we have loading the data we can briefly inspect the structure
-of the data.
+After having loaded the data, we start with inspecting it's structure.
 
 \begin{CodeChunk}
 \begin{CodeInput}
@@ -222,7 +234,7 @@ rdd_dat_indh <- rdd_data(y=choice_pg,
 \end{CodeChunk}
 
 The \texttt{rdd\_data()} can be used using the \texttt{data} argument,
-in which case the function will look for the values o \texttt{y} and
+in which case the function will look for the values of \texttt{y} and
 \texttt{x} in this argument (before looking in the \texttt{.GlobalEnv}),
 if this argument is \texttt{NULL}, only the \texttt{.GlobalEnv} will be
 scanned. Additional exogenous variables can be included using the
@@ -289,6 +301,8 @@ plot(rdd_dat_indh)
 
 \end{CodeChunk}
 
+\subsection{Parametric Estimation}\label{parametric-estimation}
+
 We can now continue with a standard Regression Discontinuity Design
 estimation.
 
@@ -320,6 +334,8 @@ plot(reg_para)
 \begin{center}\includegraphics{README_files/figure-latex/plot-reg_para-1} \end{center}
 
 \end{CodeChunk}
+
+\subsection{Non-parametric Estimation}\label{non-parametric-estimation}
 
 In addition to the parametric estimation, we can also perform a
 non-parametric estimation.
@@ -353,7 +369,10 @@ plot(reg_nonpara)
 
 \end{CodeChunk}
 
-Sensitivity tests.
+\subsection{Sensitivity tests.}\label{sensitivity-tests.}
+
+In addition to this, sepeveral sensitivity tests for the parametric and
+non-parametric estimation methods have been implemented.
 
 \begin{CodeChunk}
 \begin{CodeInput}
@@ -365,6 +384,9 @@ plotSensi(reg_nonpara, from=0.05, to=1, by=0.1)
 
 \end{CodeChunk}
 
+In addition to the sensitivity test, we can also perform various other
+test such as a placebo test.
+
 \section{Conclusion and Discussion}\label{conclusion-and-discussion}
 
 The package \texttt{rddtools} provides a unified framework for working
@@ -373,12 +395,14 @@ available is several existing packages, such as \texttt{rdd} and
 \texttt{KernSmooth} can now easily be utilised using the
 \texttt{rdd\_data} framework, as well as several linking functions.
 
-In addition to this, new tools and algorithms are also implement, as
-well as various post-estimation robustness checks.
+In addition to this, new tools and algorithms have also been implemented
+Furthermore, various post-estimation robustness checks are also included
+in the package.
 
-Future packages implementing further RDD functionality can easily
-leverage the \texttt{rdd\_data} framework, which allows users to quickly
-access new functionality through a familiar API.
+In addition to the various procedures discussed here, future packages
+implementing further RDD functionality can easily leverage the
+\texttt{rdd\_data} framework, which will allow users to quickly access
+this new functionality through a familiar API.
 
 \section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
